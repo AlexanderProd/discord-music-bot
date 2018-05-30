@@ -76,6 +76,9 @@ client.on('message', async message => {
       voiceChannel.join().then(connection => {
         console.log(`Playing file ${args[0]}.mp3`);
         const dispatcher = connection.playFile(`./audio/${args[0]}.mp3`);
+
+        dispatcher.on('error', e => console.log(e));
+        dispatcher.on('debug', d => console.log(d));
         dispatcher.on("end", end => {
           voiceChannel.leave();
         });
@@ -94,7 +97,7 @@ client.on('message', async message => {
       const { voiceChannel } = message.member;
 
       if (!voiceChannel) {
-        return message.reply('please join a voice channel first!');
+        return message.reply('Geh in einen Voice Channel!');
       }
 
       voiceChannel.join().then(connection => {
@@ -133,9 +136,12 @@ client.on('message', async message => {
           filename = body.items[rndm].filename;
           title = body.items[rndm].title;
 
-          message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/ /g,'-') +'/');
+          message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/!/g,'').replace(/ /g,'-') +'/');
 
           var voiceChannel = message.member.voiceChannel;
+          if (!voiceChannel) {
+            return message.reply('Geh in einen Voice Channel!');
+          }
           voiceChannel.join().then(connection => {
             const dispatcher = connection.playArbitraryInput("https://www.myinstants.com/media/sounds/"+filename);
             dispatcher.setVolume(1);
