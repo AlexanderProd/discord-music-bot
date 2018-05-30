@@ -77,10 +77,11 @@ client.on('message', async message => {
         console.log(`Playing file ${args[0]}.mp3`);
         const dispatcher = connection.playFile(`./audio/${args[0]}.mp3`);
 
-        dispatcher.on('error', e => console.log(e));
-        dispatcher.on('debug', d => console.log(d));
+        connection.on('error', e => console.log(e));
+        connection.on('debug', d => console.log(d));
         dispatcher.on("end", end => {
           voiceChannel.leave();
+          console.log(end);
         });
       }).catch(err => console.log(err));
       isReady = true;
