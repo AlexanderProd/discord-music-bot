@@ -23,7 +23,7 @@ module.exports = {
 
       voiceChannel.join().then(connection => {
         const stream = ytdl(String(video.url), { filter: 'audioonly' });
-        const dispatcher = connection.playStream(stream);
+        const dispatcher = connection.play(stream);
 
         dispatcher.on('end', () => voiceChannel.leave());
         isReady = true;

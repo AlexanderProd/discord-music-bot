@@ -33,10 +33,9 @@ module.exports = {
             return message.reply('Geh in einen Voice Channel!');
           }
           voiceChannel.join().then(connection => {
-            const dispatcher = connection.playArbitraryInput("https://www.myinstants.com/media/sounds/"+filename);
+            const dispatcher = connection.play("https://www.myinstants.com/media/sounds/"+filename);
             dispatcher.setVolume(1);
             dispatcher.on("end", end => {
-              sleep(2000);
               voiceChannel.leave();
             });
           }).catch(err => console.log(err));

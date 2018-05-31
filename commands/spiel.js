@@ -2,7 +2,7 @@ const ytdl = require('ytdl-core');
 
 module.exports = {
     name: 'spiel',
-    description: 'Stopt!',
+    description: 'Spiel ein YouTube Video ab!',
     execute(message, args) {
 
       isReady = false;
