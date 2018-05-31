@@ -1,12 +1,10 @@
-const request = require('request');
-
 module.exports = {
     name: 'instant',
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
     async execute(message, args) {
 
       isReady = false;
-      var search = encodeURI(args.toString().replace(/,/g,' '));
+      var search = encodeURI(args.join(" "));
       var filename, results;
 
       console.log("Searched: " + search);
