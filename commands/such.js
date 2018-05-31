@@ -9,7 +9,7 @@ module.exports = {
     async execute(message, args) {
 
       isReady = false;
-      var video = await youtube.searchVideos(args.toString().replace(/,/g,' '));
+      var video = await youtube.searchVideos(args.join(" "));
       console.log(video.url);
       message.channel.send("Ich spiele " + video.url);
 
