@@ -1,6 +1,7 @@
 module.exports = {
     name: 'sfx',
     description: 'Spielt einen Soundeffekt ab z.b. boi sfx horns.',
+    usage: '<z.b. bruh>',
     execute(message, args) {
 
       isReady = false;

@@ -3,7 +3,7 @@ const snekfetch = require('snekfetch');
 
 module.exports = {
     name: 'gif',
-    description: 'Posts a gif to the channel.',
+    description: 'Du bekommst ein zufälliges gif, kannst aber auch nach einem suchen.',
     async execute(message, args) {
 
       const { body } = await snekfetch.get(`https://api.tenor.com/v1/search?q=${args}&key=${tenorApiToken}&limit=20&anon_id=3a76e56901d740da9e59ffb22b988242`);

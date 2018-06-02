@@ -6,6 +6,7 @@ const youtube = new YouTube(youtubeApiToken);
 module.exports = {
     name: 'such',
     description: 'Suche YouTube Video.',
+    usage: '<suche>',
     async execute(message, args) {
 
       isReady = false;

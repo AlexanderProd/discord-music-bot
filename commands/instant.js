@@ -1,6 +1,7 @@
 module.exports = {
     name: 'instant',
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
+    usage: '<suche>',
     async execute(message, args) {
 
       isReady = false;
