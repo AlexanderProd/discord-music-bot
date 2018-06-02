@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 
 
 client.on('ready', () => {
-  client.user.setActivity('boi hilfe', { type: 'LISTENING' });
+  client.user.setActivity(prefix + 'hilfe', { type: 'LISTENING' });
   console.log('Ready!');
 });
 

@@ -14,7 +14,7 @@ module.exports = {
       if (!args.length) {
         data.push('Hier sind alle meine Befehle');
         data.push(commands.map(command => command.name).join(', '));
-        data.push(`\nDu kannst \`${prefix}hilfe [Befehl Name]\` verwenden um mehr über einen Befehl zu erfahren!`);
+        data.push(`\nDu kannst \`${prefix}hilfe <Befehl Name>\` verwenden um mehr über einen Befehl zu erfahren!`);
       }
       else {
         if (!commands.has(args[0])) {
