@@ -16,7 +16,7 @@ module.exports = {
           return console.log(err);
         }
         results = body.count;
-        console.log(results + " results")
+        console.log(results + " results");
 
         if (results != '0') {
           results = Math.min(Math.max(parseInt(results), 0), 500);
