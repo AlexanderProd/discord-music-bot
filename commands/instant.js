@@ -5,7 +5,6 @@ module.exports = {
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
     async execute(message, args) {
 
-      isReady = false;
       var search = encodeURI(args.join(" "));
       var filename, results, rndm;
 
@@ -26,8 +25,9 @@ module.exports = {
           console.log("Playing: " + body.items[rndm].filename);
           filename = body.items[rndm].filename;
           title = body.items[rndm].title;
+          console.log("Title: " + body.items[rndm].title);
 
-          message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/!/g,'').replace(/ /g,'-') +'/');
+          message.channel.send('https://www.myinstants.com/instant/' + title.replace(/[^a-zA-Z| ]/g, "").replace(/ /g,'-') +'/');
 
           var voiceChannel = message.member.voiceChannel;
           if (!voiceChannel) {
