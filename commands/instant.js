@@ -1,23 +1,25 @@
+const request = require('request');
+
 module.exports = {
     name: 'instant',
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
-    usage: '<suche>',
     async execute(message, args) {
 
       isReady = false;
       var search = encodeURI(args.join(" "));
-      var filename, results;
+      var filename, results, rndm;
 
       console.log("Searched: " + search);
 
-      await request('https://api.cleanvoice.ru/myinstants/?type=many&search=' + search + '&offset=0&limit=100', { json: true }, (err, res, body) => {
+      await request('https://api.cleanvoice.ru/myinstants/?type=many&search=' + search + '&offset=0&limit=500', { json: true }, (err, res, body) => {
         if (err) {
           return console.log(err);
         }
         results = body.count;
+        console.log(results + " results")
 
         if (results != '0') {
-          results = Math.min(Math.max(parseInt(results), 0), 100);
+          results = Math.min(Math.max(parseInt(results), 0), 500);
           rndm = Math.floor(Math.random() * results);
           console.log("RND: "+rndm);
 
@@ -47,12 +49,3 @@ module.exports = {
 
     },
 };
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}

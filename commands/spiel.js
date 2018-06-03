@@ -15,7 +15,7 @@ module.exports = {
         const { voiceChannel } = message.member;
 
         if (!voiceChannel) {
-          return message.reply('please join a voice channel first!');
+          return message.reply('Geh in einen Voice Channel!');
         }
 
         voiceChannel.join().then(connection => {
