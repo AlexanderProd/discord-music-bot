@@ -9,26 +9,44 @@ module.exports = {
     usage: '<suche>',
     async execute(message, args) {
 
-      isReady = false;
-      var video = await youtube.searchVideos(args.join(" "));
-      console.log(video.url);
-      message.channel.send("Ich spiele " + video.url);
+      if(args[0].includes("http")){
 
-      if (message.channel.type !== 'text') return;
+        if (message.channel.type !== 'text') return;
+        const { voiceChannel } = message.member;
 
-      const { voiceChannel } = message.member;
+        if (!voiceChannel) {
+          return message.reply('please join a voice channel first!');
+        }
 
-      if (!voiceChannel) {
-        return message.reply('Geh in einen Voice Channel!');
+        voiceChannel.join().then(connection => {
+          const stream = ytdl(`${args[0]}`, { filter: 'audioonly' });
+          const dispatcher = connection.play(stream);
+
+          dispatcher.on('end', () => voiceChannel.leave());
+        });
+
+      } else {
+
+        var video = await youtube.searchVideos(args.join(" "));
+        console.log(video.url);
+        message.channel.send("Ich spiele " + video.url);
+
+        if (message.channel.type !== 'text') return;
+
+        const { voiceChannel } = message.member;
+
+        if (!voiceChannel) {
+          return message.reply('Geh in einen Voice Channel!');
+        }
+
+        voiceChannel.join().then(connection => {
+          const stream = ytdl(String(video.url), { filter: 'audioonly' });
+          const dispatcher = connection.play(stream);
+
+          dispatcher.on('end', () => voiceChannel.leave());
+        });
+
       }
-
-      voiceChannel.join().then(connection => {
-        const stream = ytdl(String(video.url), { filter: 'audioonly' });
-        const dispatcher = connection.play(stream);
-
-        dispatcher.on('end', () => voiceChannel.leave());
-        isReady = true;
-      });
 
     },
 };
