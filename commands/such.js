@@ -18,12 +18,7 @@ module.exports = {
           return message.reply('please join a voice channel first!');
         }
 
-        voiceChannel.join().then(connection => {
-          const stream = ytdl(`${args[0]}`, { filter: 'audioonly' });
-          const dispatcher = connection.play(stream);
-
-          dispatcher.on('end', () => voiceChannel.leave());
-        });
+        playStream(args, voiceChannel);
 
       } else {
 
@@ -49,4 +44,18 @@ module.exports = {
       }
 
     },
+};
+
+function playStream(args, voiceChannel){
+  voiceChannel.join().then(connection => {
+    const stream = ytdl(`${args[0]}`, { filter: 'audioonly' });
+    const dispatcher = connection.play(stream);
+
+    if (args[1] && args[1].includes("loop")) {
+      dispatcher.on('end', () => voiceChannel.leave());
+      this.playStream(args, voiceChannel);
+    } else {
+      dispatcher.on('end', () => voiceChannel.leave());
+    }
+  });
 };

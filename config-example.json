@@ -2,5 +2,6 @@
     "prefix": "boi2 ",
     "token": "",
     "youtubeApiToken": "",
-    "tenorApiToken": ""
+    "tenorApiToken": "",
+    "digitalOceanApi": ""
 }
