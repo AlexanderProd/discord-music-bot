@@ -3,5 +3,5 @@
     "token": "",
     "youtubeApiToken": "",
     "tenorApiToken": "",
-    "digitalOceanApi": ""
+    "digitalOceanApiKey": ""
 }
