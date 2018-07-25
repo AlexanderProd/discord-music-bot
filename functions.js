@@ -16,5 +16,10 @@ module.exports = {
     } else {
       return "keine antwort";
     }
+  },
+
+  timestamp: function(){
+    var d = new Date();
+    return d.getDate()+"-"+d.getMonth()+"--"+d.getHours()+"-"+d.getMinutes();
   }
 }
