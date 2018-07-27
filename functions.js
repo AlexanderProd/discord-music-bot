@@ -20,6 +20,6 @@ module.exports = {
 
   timestamp: function(){
     var d = new Date();
-    return d.getDate()+"-"+d.getMonth()+"--"+d.getHours()+"-"+d.getMinutes();
+    return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+"--"+d.getHours()+"-"+d.getMinutes();
   }
 }

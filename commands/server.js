@@ -1,7 +1,8 @@
 const { digitalOceanApiKey } = require('./../config.json');
-const DigitalOcean = require('do-wrapper').default, api = new DigitalOcean(digitalOceanApiKey, 2);
+const DigitalOcean = require('do-wrapper').default, api = new DigitalOcean(digitalOceanApiKey, 10);
 const fs = require('fs');
 const functions = require('../functions.js')
+const timeout = ms => new Promise(res => setTimeout(res, ms));
 
 module.exports = {
     name: 'server',
@@ -21,14 +22,13 @@ module.exports = {
       }); */
 
       if (args[0] == "start"){
-        await createDroplet(`direwolf20--${await functions.timestamp()}`, await getSnapshotId());
+        await createDroplet(`direwolf20--${await functions.timestamp()}`, /* `${await getLatestSnapshotId()}` */"36600050");
         message.channel.send("Alles klar Diggah Server wird gestartet!")
 
-        const timeout = ms => new Promise(res => setTimeout(res, ms));
         await timeout(120000);
 
         assignFloatingIp('138.68.113.86', await getActiveDropletId(), message);
-        message.channel.send("Dude es kann a weng dauern bis der Server im Spiel zu sehen ist.")
+        message.channel.send("Server wurde gestartet, er könnte aber noch nicht sofort im Spiel zu sehen sein.")
       }
 
       if (args[0] == "assign"){
@@ -36,18 +36,26 @@ module.exports = {
       }
 
       if (args[0] == "stop"){
-        message.reply("Stecker wird gezogen.")
-        shutdownDroplet(await getActiveDropletId());
+        const oldSnapshot = await getLatestSnapshotId();
+        console.log(oldSnapshot);
+
+        await shutdownDroplet(await getActiveDropletId());
+        await createSnapshot(await getActiveDropletId(), `direwolf20--${functions.timestamp()}`);
+
         await setTimeout(destroyDroplet, 30000, await getActiveDropletId());
-        message.channel.send("Server is jetzt abgeschaltet!");
+        message.channel.send("Server wird heruntergefahren!");
+
+        await deleteSnapshot(oldSnapshot);
       }
 
       if(args[0] == "snapshot"){
-        createSnapshot(await getActiveDropletId(), "test-snapshot");
+        createSnapshot(await getActiveDropletId(),"test")
+        //getSnapshotsFromDroplet("103617210");
       }
 
     },
 }
+
 
 function destroyDroplet(droplet_id){
   api.dropletsDelete(droplet_id).then((data) => {
@@ -56,6 +64,7 @@ function destroyDroplet(droplet_id){
     console.log(error.body);
   });
 }
+
 
 function shutdownDroplet(droplet_id){
   api.dropletsRequestAction(droplet_id,
@@ -70,20 +79,29 @@ function shutdownDroplet(droplet_id){
   });
 }
 
-function createSnapshot(droplet_id, snapshot_name){
-  api.dropletsRequestAction(droplet_id,
+
+async function createSnapshot(droplet_id, snapshot_name){
+  await api.dropletsRequestAction(droplet_id,
     {
       "type": "snapshot",
       "name": snapshot_name
     }
   ).then((data) => {
-    console.log(`Created Snapshot from droplet ${droplet_id}`);
-    writeToJSON(data.body, "snapshot-properties");
+    console.log(`Created Snapshot ${data.body.action.id} from droplet ${droplet_id}`);
+  }).catch((error) => {
+    console.log(error.body);
+  });
+
+  await timeout(120000);
+  api.dropletsGetSnapshots(droplet_id).then((data) => {
+    console.log(data.body.snapshots[0]);
+    writeToJSON(data.body.snapshots[0],"snapshot-properties")
     console.log("Snapshot properties were saved to file.");
   }).catch((error) => {
     console.log(error.body);
   });
 }
+
 
 function assignFloatingIp(floating_ip, droplet_id, message){
   api.floatingIpsRequestAction(floating_ip,
@@ -99,6 +117,7 @@ function assignFloatingIp(floating_ip, droplet_id, message){
   });
 }
 
+
 function createDroplet(name, image){
   api.dropletsCreate({
     "name": name,
@@ -113,6 +132,7 @@ function createDroplet(name, image){
     "user_data":null,
     "private_networking":null,
     "volumes": null,
+    "monitoring":true,
     "tags":null
   }).then((data) => {
     writeToJSON(data.body, "server-properties");
@@ -123,12 +143,32 @@ function createDroplet(name, image){
   });
 }
 
+
 function getSnapshotId(){
   return api.imagesGetAll({
     "private": true
   }).then((data) => {
     console.log("ID of first Snapshot: " + data.body.images[0].id);
     return(data.body.images[0].id);
+  }).catch((error) => {
+    console.log(error.body);
+  });
+}
+
+
+function getSnapshotsFromDroplet(droplet_id){
+  api.dropletsGetSnapshots(droplet_id).then((data) => {
+    console.log(data.body.snapshots[0])
+    return(data.body.snapshots[0])
+  }).catch((error) => {
+    console.log(error.body);
+  });
+}
+
+
+function deleteSnapshot(snapshot_id){
+  api.imagesDelete(snapshot_id).then((data) => {
+    console.log(`Deleted snapshot with ID: ${snapshot_id}`);
   }).catch((error) => {
     console.log(error.body);
   });
@@ -145,7 +185,15 @@ function writeToJSON(input, fileName){
   });
 }
 
+
 function getActiveDropletId() {
    var objectValue = JSON.parse(fs.readFileSync('server-properties.json', 'utf8'));
    return objectValue.droplet.id;
+}
+
+
+async function getLatestSnapshotId() {
+   var objectValue = await JSON.parse(fs.readFileSync('snapshot-properties.json', 'utf8'));
+   console.log(`Latest snapshot ID is ${objectValue.id}`)
+   return String(objectValue.id);
 }
