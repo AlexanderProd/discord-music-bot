@@ -22,8 +22,8 @@ module.exports = {
       }); */
 
       if (args[0] == "start"){
-        await createDroplet(`direwolf20--${await functions.timestamp()}`, /* `${await getLatestSnapshotId()}` */"36600050");
-        message.channel.send("Alles klar Diggah Server wird gestartet!")
+        await createDroplet(`direwolf20--${await functions.timestamp()}`, await getLatestSnapshotId()/* "36600050" */);
+        message.channel.send("Alles klar, Server wird gestartet!")
 
         await timeout(120000);
 
@@ -36,8 +36,9 @@ module.exports = {
       }
 
       if (args[0] == "stop"){
+        console.log("Shuttung down server");
+
         const oldSnapshot = await getLatestSnapshotId();
-        console.log(oldSnapshot);
 
         await shutdownDroplet(await getActiveDropletId());
         await createSnapshot(await getActiveDropletId(), `direwolf20--${functions.timestamp()}`);
@@ -72,7 +73,6 @@ function shutdownDroplet(droplet_id){
       "type": "shutdown"
     }
   ).then((data) => {
-    console.log(data.body);
     console.log("Shutdown sucessfull!")
   }).catch((error) => {
     console.log(error.body);
@@ -94,7 +94,6 @@ async function createSnapshot(droplet_id, snapshot_name){
 
   await timeout(120000);
   api.dropletsGetSnapshots(droplet_id).then((data) => {
-    console.log(data.body.snapshots[0]);
     writeToJSON(data.body.snapshots[0],"snapshot-properties")
     console.log("Snapshot properties were saved to file.");
   }).catch((error) => {
