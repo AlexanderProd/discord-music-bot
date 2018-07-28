@@ -1,3 +1,5 @@
+const functions = require('../functions.js'), tt = functions.ctimestamp();
+
 module.exports = {
     name: 'sfx',
     description: 'Spielt einen Soundeffekt ab z.b. boi sfx horns.',
@@ -7,7 +9,7 @@ module.exports = {
       isReady = false;
       var voiceChannel = message.member.voiceChannel;
       voiceChannel.join().then(connection => {
-        console.log(`Playing file ${args[0]}.mp3`);
+        console.log(tt+`Playing sfx file ${args[0]}.mp3`);
         const dispatcher = connection.play(`./audio/${args[0]}.mp3`);
 
         connection.on('error', e => console.log(e));

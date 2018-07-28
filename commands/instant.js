@@ -1,31 +1,33 @@
 const request = require('request');
+const functions = require('../functions.js'), tt = functions.ctimestamp();
 
 module.exports = {
     name: 'instant',
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
     async execute(message, args) {
+      console.log(tt+"Running instant command.")
 
       var search = encodeURI(args.join(" "));
       var filename, results, rndm;
 
-      console.log("Searched: " + search);
+      console.log(tt+"Searched: " + search);
 
       await request('https://api.cleanvoice.ru/myinstants/?type=many&search=' + search + '&offset=0&limit=500', { json: true }, (err, res, body) => {
         if (err) {
           return console.log(err);
         }
         results = body.count;
-        console.log(results + " results");
+        console.log(tt+"Results: " + results);
 
         if (results != '0') {
           results = Math.min(Math.max(parseInt(results), 0), 500);
           rndm = Math.floor(Math.random() * results);
-          console.log("RND: "+rndm);
+          console.log(tt+"RND: "+rndm);
 
-          console.log("Playing: " + body.items[rndm].filename);
+          console.log(tt+"Playing: " + body.items[rndm].filename);
           filename = body.items[rndm].filename;
           title = body.items[rndm].title;
-          console.log("Title: " + body.items[rndm].title);
+          console.log(tt+"Title: " + body.items[rndm].title);
 
           message.channel.send('https://www.myinstants.com/instant/' + title.replace(/[^a-zA-Z| ]/g, "").replace(/ /g,'-') +'/');
 

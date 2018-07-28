@@ -2,6 +2,7 @@ const ytdl = require('ytdl-core');
 const YouTube = require("discord-youtube-api");
 const { prefix, token, youtubeApiToken } = require('./../config.json');
 const youtube = new YouTube(youtubeApiToken);
+const functions = require('../functions.js'), tt = functions.ctimestamp();
 
 module.exports = {
     name: 'spiel',
@@ -10,6 +11,7 @@ module.exports = {
     async execute(message, args) {
 
       if(args[0].includes("http")){
+        console.log(tt+"Playing YouTube video " + args[0]);
 
         if (message.channel.type !== 'text') return;
         const { voiceChannel } = message.member;
@@ -28,7 +30,8 @@ module.exports = {
       } else {
 
         var video = await youtube.searchVideos(args.join(" "));
-        console.log(video.url);
+        console.log(tt+"Searching for" + args.join(" ") + "on YouTube");
+        console.log(tt+"Playing: "+video.url);
         message.channel.send("Ich spiele " + video.url);
 
         if (message.channel.type !== 'text') return;
