@@ -12,7 +12,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const functions = require('./functions.js'), tt = functions.ctimestamp();
+const fct = require('./functions.js');
 
 
 for (const file of commandFiles) {
@@ -23,7 +23,7 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
   client.user.setActivity(prefix + 'hilfe', { type: 'LISTENING' });
-  console.log(tt+'Ready!');
+  console.log(fct.t()+'Ready!');
 });
 
 client.on('message', async message => {

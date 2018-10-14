@@ -1,11 +1,11 @@
 const request = require('request');
-const functions = require('../functions.js'), tt = functions.ctimestamp();
+const f = require('../functions.js');
 
 module.exports = {
     name: 'random',
     description: 'Spielt einen zufälligen Sound auf myinstants.com ab.',
     async execute(message, args) {
-      console.log(tt+"Running random command.")
+      console.log(f.t()+"Running random command.")
 
       var filename, results;
 
@@ -16,7 +16,7 @@ module.exports = {
 
         filename = body.filename;
         title = body.title;
-        console.log(tt+"Playing: " + filename + "with title " + title);
+        console.log(f.t()+"Playing: " + filename + " with title " + title);
 
         /*Trying to create the myinstant.com url for this sound and sending it to the channel */
         message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/!/g,'').replace(/ /g,'-') +'/');

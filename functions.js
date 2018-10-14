@@ -24,7 +24,7 @@ module.exports = {
   },
 
   /* Timestamp formated for console output */
-  ctimestamp: function(){
+  t: function(){
     var d = new Date();
     return d.getDate()+"."+d.getMonth()+"."+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" ";
   }
