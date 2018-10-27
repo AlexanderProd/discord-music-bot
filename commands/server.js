@@ -10,6 +10,7 @@ module.exports = {
     name: 'server',
     description: 'Wird verwendet um einen Gamerserver zu verwalten.',
     async execute(message, args) {
+      console.log(f.t()+message.author.tag+` used the server command`);
       console.log(f.t()+"Server is " + (running == true ? "running." : "not running."));
 
       /* api.accountGetKeys().then((data) => {

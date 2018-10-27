@@ -9,6 +9,7 @@ module.exports = {
     description: 'Spiel ein YouTube Video ab oder suche nach einem!',
     usage: '<youtube link oder suche>',
     async execute(message, args) {
+      console.log(f.t()+message.author.tag+` used the spiel command`);
 
       if(args[0].includes("http")){
         console.log(f.t()+"Playing YouTube video " + args[0]);

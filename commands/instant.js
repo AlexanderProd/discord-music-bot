@@ -5,7 +5,7 @@ module.exports = {
     name: 'instant',
     description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
     async execute(message, args) {
-      console.log(f.t()+"Running instant command.")
+      console.log(f.t()+message.author.tag+` used the instant command`);
 
       var search = encodeURI(args.join(" "));
       var filename, results, rndm;

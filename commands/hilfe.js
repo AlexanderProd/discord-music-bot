@@ -7,6 +7,7 @@ module.exports = {
     usage: '[command name]',
     cooldown: 5,
     execute(message, args) {
+      console.log(f.t()+message.author.tag+` used the hilfe command`);
 
       const { commands } = message.client;
       const data = [];

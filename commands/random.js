@@ -5,7 +5,7 @@ module.exports = {
     name: 'random',
     description: 'Spielt einen zufälligen Sound auf myinstants.com ab.',
     async execute(message, args) {
-      console.log(f.t()+"Running random command.")
+      console.log(f.t()+message.author.tag+` used the random command`);
 
       var filename, results;
 

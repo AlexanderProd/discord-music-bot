@@ -5,6 +5,7 @@ module.exports = {
     description: 'Spielt einen Soundeffekt ab z.b. boi sfx horns.',
     usage: '<z.b. bruh>',
     execute(message, args) {
+      console.log(f.t()+message.author.tag+` used the sfx command`);
 
       isReady = false;
       var voiceChannel = message.member.voiceChannel;

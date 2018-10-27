@@ -5,6 +5,7 @@ module.exports = {
     name: 'cx',
     description: 'Spielt qualitativen content.',
     execute(message, args) {
+      console.log(f.t()+message.author.tag+` used the cx command`);
 
       if (message.channel.type !== 'text') return;
 
