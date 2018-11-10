@@ -25,7 +25,7 @@ module.exports = {
           const stream = ytdl(`${args[0]}`, { filter: 'audioonly' });
           const dispatcher = connection.play(stream);
 
-          dispatcher.on('end', () => args[1].includes("loop") ? voiceChannel.leave()+this.execute(message, args) : voiceChannel.leave());
+          dispatcher.on('end', () => voiceChannel.leave());
         });
 
       } else {
