@@ -21,7 +21,6 @@
     "libsodium-wrappers": "^0.7.3",
     "node-fetch": "^2.2.0",
     "node-opus": "^0.2.9",
-    "nodemon": "^1.18.5",
     "npm": "^6.2.0",
     "opusscript": "0.0.4",
     "request": "^2.87.0",
