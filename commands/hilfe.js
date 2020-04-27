@@ -1,4 +1,5 @@
 const { prefix } = require('./../config.json');
+const f = require('../functions.js');
 
 module.exports = {
     name: 'hilfe',
