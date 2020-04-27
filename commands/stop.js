@@ -6,8 +6,8 @@ module.exports = {
     execute(message, args) {
 
       console.log(f.t()+message.author.tag+` used the stop command`);
-      const { voiceChannel } = message.member;
-      voiceChannel.leave();
+      const { channel } = message.member.voice;
+      channel.leave();
       var isReady = true;
 
     },
