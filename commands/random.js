@@ -21,7 +21,7 @@ module.exports = {
         /*Trying to create the myinstant.com url for this sound and sending it to the channel */
         message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/!/g,'').replace(/ /g,'-') +'/');
 
-        var voiceChannel = message.member.voiceChannel;
+        var voiceChannel = message.member.voice.channel;
         if (!voiceChannel) {
           return message.reply('Geh in einen Voice Channel!');
         }

@@ -8,7 +8,7 @@ module.exports = {
       console.log(f.t()+message.author.tag+` used the sfx command`);
 
       isReady = false;
-      var voiceChannel = message.member.voiceChannel;
+      var voiceChannel = message.member.voice.channel;
       voiceChannel.join().then(connection => {
         console.log(f.t()+`Playing sfx file ${args[0]}.mp3`);
         const dispatcher = connection.play(`./audio/${args[0]}.mp3`);

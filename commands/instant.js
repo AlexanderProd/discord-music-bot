@@ -31,7 +31,7 @@ module.exports = {
 
           message.channel.send('https://www.myinstants.com/instant/' + title.replace(/[^a-zA-Z| ]/g, "").replace(/ /g,'-') +'/');
 
-          var voiceChannel = message.member.voiceChannel;
+          var voiceChannel = message.member.voice.channel;
           if (!voiceChannel) {
             return message.reply('Geh in einen Voice Channel!');
           }
