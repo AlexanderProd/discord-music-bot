@@ -7,12 +7,12 @@ module.exports = {
     async execute(message, args) {
       console.log(f.t()+message.author.tag+` used the instant command`);
 
-      var search = encodeURI(args.join(" "));
-      var filename, results, rndm;
+      const search = encodeURI(args.join(" "));
+      let filename, results, rndm;
 
       console.log(f.t()+"Searched: " + search);
 
-      await request('https://api.cleanvoice.ru/myinstants/?type=many&search=' + search + '&offset=0&limit=500', { json: true }, (err, res, body) => {
+      request('https://api.cleanvoice.ru/myinstants/?type=many&search=' + search + '&offset=0&limit=500', { json: true }, (err, res, body) => {
         if (err) {
           return console.log(err);
         }
@@ -31,7 +31,7 @@ module.exports = {
 
           message.channel.send('https://www.myinstants.com/instant/' + title.replace(/[^a-zA-Z| ]/g, "").replace(/ /g,'-') +'/');
 
-          var voiceChannel = message.member.voice.channel;
+          const voiceChannel = message.member.voice.channel;
           if (!voiceChannel) {
             return message.reply('Geh in einen Voice Channel!');
           }

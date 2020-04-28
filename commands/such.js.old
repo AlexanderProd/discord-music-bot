@@ -22,7 +22,7 @@ module.exports = {
 
       } else {
 
-        var video = await youtube.searchVideos(args.join(" "));
+        let video = await youtube.searchVideos(args.join(" "));
         console.log(video.url);
         message.channel.send("Ich spiele " + video.url);
 

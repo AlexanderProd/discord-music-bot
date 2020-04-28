@@ -4,7 +4,7 @@ const fs = require('fs');
 const f = require('../functions.js');
 const timeout = ms => new Promise(res => setTimeout(res, ms));
 
-var running = false;
+let running = false;
 
 module.exports = {
     name: 'server',
@@ -170,7 +170,7 @@ function deleteSnapshot(snapshot_id){
 
 
 function writeToJSON(input, fileName){
-  var content = JSON.stringify(input);
+  let content = JSON.stringify(input);
 
   fs.writeFile(`${fileName}.json`, content, 'utf8', function (err) {
       if (err) {
@@ -182,13 +182,13 @@ function writeToJSON(input, fileName){
 
 
 function getActiveDropletId() {
-   var objectValue = JSON.parse(fs.readFileSync('server-properties.json', 'utf8'));
+   let objectValue = JSON.parse(fs.readFileSync('server-properties.json', 'utf8'));
    return objectValue.droplet.id;
 }
 
 
 async function getLatestSnapshotId() {
-   var objectValue = await JSON.parse(fs.readFileSync('snapshot-properties.json', 'utf8'));
+   let objectValue = await JSON.parse(fs.readFileSync('snapshot-properties.json', 'utf8'));
    console.log(f.t()+`Latest snapshot ID is ${objectValue.id}`)
    return String(objectValue.id);
 }

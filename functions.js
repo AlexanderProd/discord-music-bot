@@ -1,7 +1,7 @@
 module.exports = {
   sleep: function(milliseconds){
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
+    const start = new Date().getTime();
+    for (let i = 0; i < 1e7; i++) {
       if ((new Date().getTime() - start) > milliseconds){
         break;
       }
@@ -19,13 +19,13 @@ module.exports = {
   },
 
   timestamp: function(){
-    var d = new Date();
+    const d = new Date();
     return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+"--"+d.getHours()+"-"+d.getMinutes();
   },
 
   /* Timestamp formated for console output */
   t: function(){
-    var d = new Date();
+    const d = new Date();
     return d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" ";
   }
 }

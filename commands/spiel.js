@@ -30,7 +30,7 @@ module.exports = {
 
       } else {
 
-        var video = await youtube.searchVideos(args.join(" "));
+        const video = await youtube.searchVideos(args.join(" "));
         console.log(f.t()+"Searching for " + args.join(" ") + " on YouTube");
         console.log(f.t()+"Playing: "+video.url);
         message.channel.send("Ich spiele " + video.url);
