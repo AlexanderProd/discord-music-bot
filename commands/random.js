@@ -16,7 +16,7 @@ module.exports = {
 
         filename = body.filename;
         title = body.title;
-        console.log(f.t()+"Playing: " + filename + " with title " + title);
+        console.log(f.t()+'Playing: ' + filename + ' with title ' + title);
 
         /*Trying to create the myinstant.com url for this sound and sending it to the channel */
         message.channel.send('https://www.myinstants.com/instant/' + title.replace(/'/g,'').replace(/!/g,'').replace(/ /g,'-') +'/');
@@ -26,9 +26,10 @@ module.exports = {
           return message.reply('Geh in einen Voice Channel!');
         }
         voiceChannel.join().then(connection => {
-          const dispatcher = connection.play("https://www.myinstants.com/media/sounds/"+filename);
+          const dispatcher = connection.play('https://www.myinstants.com/media/sounds/'+filename);
           dispatcher.setVolume(1);
           dispatcher.on('end', () => {
+            console.log('test')
             voiceChannel.leave();
           });
         }).catch(err => console.log(err));

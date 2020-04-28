@@ -1,5 +1,5 @@
 const ytdl = require('ytdl-core');
-const YouTube = require("discord-youtube-api");
+const YouTube = require('discord-youtube-api');
 const { youtubeApiToken } = require('./../config.json');
 const youtube = new YouTube(youtubeApiToken);
 const f = require('../functions.js');
@@ -11,8 +11,8 @@ module.exports = {
     async execute(message, args) {
       console.log(f.t()+message.author.tag+` used the spiel command`);
 
-      if(args[0].includes("http")){
-        console.log(f.t()+"Playing YouTube video " + args[0]);
+      if(args[0].includes('http')){
+        console.log(f.t()+'Playing YouTube video ' + args[0]);
 
         if (message.channel.type !== 'text') return;
         const { voiceChannel } = message.member;
@@ -30,10 +30,10 @@ module.exports = {
 
       } else {
 
-        const video = await youtube.searchVideos(args.join(" "));
-        console.log(f.t()+"Searching for " + args.join(" ") + " on YouTube");
-        console.log(f.t()+"Playing: "+video.url);
-        message.channel.send("Ich spiele " + video.url);
+        const video = await youtube.searchVideos(args.join(' '));
+        console.log(f.t()+'Searching for ' + args.join(' ') + ' on YouTube');
+        console.log(f.t()+'Playing: '+video.url);
+        message.channel.send('Ich spiele ' + video.url);
 
         if (message.channel.type !== 'text') return;
 

@@ -9,23 +9,23 @@ module.exports = {
   },
 
   hello: function(args){
-    if(args[0] == "1"){
-      return "erste antwort";
-    } else if(args[0] == "2") {
-      return "zweite antwort";
+    if(args[0] == '1'){
+      return 'erste antwort';
+    } else if(args[0] == '2') {
+      return 'zweite antwort';
     } else {
-      return "keine antwort";
+      return 'keine antwort';
     }
   },
 
   timestamp: function(){
     const d = new Date();
-    return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+"--"+d.getHours()+"-"+d.getMinutes();
+    return d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()+'--'+d.getHours()+'-'+d.getMinutes();
   },
 
   /* Timestamp formated for console output */
   t: function(){
     const d = new Date();
-    return d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" ";
+    return d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+' ';
   }
 }
