@@ -16,7 +16,7 @@ for (const file of commandFiles) {
 
 
 client.on('ready', () => {
-  client.user.setActivity(prefix + 'hilfe', { type: 'LISTENING' });
+  client.user.setActivity(prefix + 'help', { type: 'LISTENING' });
   console.log(fct.t()+'Ready!');
 });
 
