@@ -1,13 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const ytdl = require('ytdl-core');
 const { prefix, token, youtubeApiToken } = require('./config.json');
 
-const YouTube = require("discord-youtube-api");
-const snekfetch = require('snekfetch');
-const request = require('request');
-
-const youtube = new YouTube(youtubeApiToken);
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 

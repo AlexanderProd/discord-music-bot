@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core');
 const YouTube = require("discord-youtube-api");
-const { prefix, token, youtubeApiToken } = require('./../config.json');
+const { youtubeApiToken } = require('./../config.json');
 const youtube = new YouTube(youtubeApiToken);
 const f = require('../functions.js');
 
