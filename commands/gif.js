@@ -4,8 +4,8 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'gif',
-    description: 'Du bekommst ein zufälliges gif, kannst aber auch nach einem suchen.',
-    usage: '<suche oder leer für zufälliges gif>',
+    description: 'You can either get a random gif or search for one.',
+    usage: '<search or leave empty for random gif>',
     async execute(message, args) {
       console.log(f.t()+message.author.tag+` used the gif command`);
 

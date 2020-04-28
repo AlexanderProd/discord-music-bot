@@ -3,9 +3,9 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'random',
-    description: 'Spielt einen zufälligen Sound auf myinstants.com ab.',
+    description: 'Plays a random sound from myinstants.com',
     async execute(message, args) {
-      console.log(f.t()+message.author.tag+` used the random command`);
+      console.log(f.t()+message.author.tag+' used the random command');
 
       let filename, results;
 
@@ -23,7 +23,7 @@ module.exports = {
 
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) {
-          return message.reply('Geh in einen Voice Channel!');
+          return message.reply('Get in a voice channel!');
         }
         voiceChannel.join().then(connection => {
           const dispatcher = connection.play('https://www.myinstants.com/media/sounds/'+filename);

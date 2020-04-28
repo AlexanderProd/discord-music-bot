@@ -2,8 +2,8 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'sfx',
-    description: 'Spielt einen Soundeffekt ab z.b. boi sfx horns.',
-    usage: '<z.b. bruh>',
+    description: 'I\'m playing a sound effect e.g. boi sfx horns.',
+    usage: '<e.g. bruh>',
     execute(message, args) {
       console.log(f.t()+message.author.tag+` used the sfx command`);
 

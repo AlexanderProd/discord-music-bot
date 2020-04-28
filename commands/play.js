@@ -1,13 +1,13 @@
 const ytdl = require('ytdl-core');
 const YouTube = require('discord-youtube-api');
-const { youtubeApiToken } = require('./../config.json');
+const { youtubeApiToken } = require('../config.json');
 const youtube = new YouTube(youtubeApiToken);
 const f = require('../functions.js');
 
 module.exports = {
-    name: 'spiel',
-    description: 'Spiel ein YouTube Video ab oder suche nach einem!',
-    usage: '<youtube link oder suche>',
+    name: 'play',
+    description: 'Plays a video from a YouTube link or search.',
+    usage: '<youtube link or search>',
     async execute(message, args) {
       console.log(f.t()+message.author.tag+` used the spiel command`);
 
@@ -18,7 +18,7 @@ module.exports = {
         const { voiceChannel } = message.member;
 
         if (!voiceChannel) {
-          return message.reply('Geh in einen Voice Channel!');
+          return message.reply('Get in a voice channel!');
         }
 
         voiceChannel.join().then(connection => {
@@ -40,7 +40,7 @@ module.exports = {
         const { voiceChannel } = message.member;
 
         if (!voiceChannel) {
-          return message.reply('Geh in einen Voice Channel!');
+          return message.reply('Get in a voice channel.');
         }
 
         voiceChannel.join().then(connection => {

@@ -3,7 +3,7 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'cx',
-    description: 'Spielt qualitativen content.',
+    description: 'Plays great content.',
     execute(message, args) {
       console.log(f.t()+message.author.tag+` used the cx command`);
 

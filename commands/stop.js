@@ -2,7 +2,7 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'stop',
-    description: 'Stopt!',
+    description: 'Stops!',
     execute(message, args) {
 
       console.log(f.t()+message.author.tag+` used the stop command`);

@@ -3,9 +3,9 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'instant',
-    description: 'Sucht nach einem Sound auf myinstants.com und spielt ihn ab!',
+    description: 'Searches for a sound on myinstants.com and plays it.',
     async execute(message, args) {
-      console.log(f.t()+message.author.tag+` used the instant command`);
+      console.log(f.t()+message.author.tag+' used the instant command');
 
       const search = encodeURI(args.join(' '));
       let filename, results, rndm;

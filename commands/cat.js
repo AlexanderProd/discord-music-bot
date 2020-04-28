@@ -3,7 +3,7 @@ const f = require('../functions.js');
 
 module.exports = {
     name: 'cat',
-    description: 'Macht was es soll.',
+    description: 'A cat.',
     async execute(message, args) {
       console.log(f.t()+message.author.tag+' used the cat command')
 
