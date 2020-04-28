@@ -33,7 +33,7 @@ client.on('message', async message => {
 	}
 	catch (error) {
 		console.error(error);
-		message.reply('Ich habe deinen Befehl nicht verstanden.');
+		message.reply('I don\'t understand your command!');
 	}
 });
 
