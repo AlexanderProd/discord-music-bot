@@ -46,16 +46,16 @@ module.exports = {
           }
           voiceChannel
             .join()
-            .then((connection) => {
+            .then(connection => {
               const dispatcher = connection.play(
                 'https://www.myinstants.com/media/sounds/' + filename
               );
               dispatcher.setVolume(1);
-              dispatcher.on('end', (end) => {
+              dispatcher.on('end', end => {
                 voiceChannel.leave();
               });
             })
-            .catch((err) => console.log(err));
+            .catch(err => console.log(err));
         } else {
           return message.reply('Nichts gefunden!');
         }

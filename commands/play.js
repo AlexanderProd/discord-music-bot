@@ -21,7 +21,7 @@ module.exports = {
         return message.reply('Get in a voice channel!');
       }
 
-      voiceChannel.join().then((connection) => {
+      voiceChannel.join().then(connection => {
         const stream = ytdl(`${args[0]}`, { filter: 'audioonly' });
         const dispatcher = connection.play(stream);
 
@@ -41,7 +41,7 @@ module.exports = {
         return message.reply('Get in a voice channel.');
       }
 
-      voiceChannel.join().then((connection) => {
+      voiceChannel.join().then(connection => {
         const stream = ytdl(String(video.url), { filter: 'audioonly' });
         const dispatcher = connection.play(stream);
 

@@ -15,7 +15,7 @@ module.exports = {
 
     if (!args.length) {
       data.push('Those are all the commands I know');
-      data.push(commands.map((command) => command.name).join(', '));
+      data.push(commands.map(command => command.name).join(', '));
       data.push(
         `\nYou can use \`${prefix}help <Command Name>\` to learn more about a command.`
       );

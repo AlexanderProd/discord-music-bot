@@ -7,7 +7,7 @@ client.commands = new Discord.Collection();
 
 const commandFiles = fs
   .readdirSync('./commands')
-  .filter((file) => file.endsWith('.js'));
+  .filter(file => file.endsWith('.js'));
 const fct = require('./functions.js');
 
 for (const file of commandFiles) {
@@ -20,7 +20,7 @@ client.on('ready', () => {
   console.log(fct.t() + 'Ready!');
 });
 
-client.on('message', async (message) => {
+client.on('message', async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
