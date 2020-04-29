@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": "git@github.com:AlexanderProd/discord-music-bot.git",
   "author": "Alexander Hörl <alexander.horl2@live.de>",
@@ -15,5 +16,15 @@
     "request": "^2.88.2",
     "snekfetch": "^4.0.4",
     "ytdl-core": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
   }
 }
