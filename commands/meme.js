@@ -10,9 +10,9 @@ module.exports = {
     console.log(f.t() + message.author.tag + ` used the ${this.name} command`);
 
     const lang =
-      args[0] === 'de' || 'en' || 'fr' || 'ru' || 'es' || 'it'
+      args[0] === ('de' || 'en' || 'fr' || 'ru' || 'es' || 'it')
         ? `?lang=${args[0]}`
-        : null;
+        : '?lang=en';
 
     request(
       `https://memes.blademaker.tv/api${lang}`,
