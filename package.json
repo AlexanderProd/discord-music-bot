@@ -10,7 +10,7 @@
   "author": "Alexander Hörl <alexander.horl2@live.de>",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "^0.2.1",
+    "@discordjs/opus": "^0.8.0",
     "discord-youtube-api": "^0.1.0",
     "discord.js": "^12.2.0",
     "request": "^2.88.2",
